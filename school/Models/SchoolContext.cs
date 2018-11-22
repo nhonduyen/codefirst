@@ -9,14 +9,17 @@ namespace school.Models {
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("cnnstring");
-            
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<StudentCourse>().HasKey(
+                sc => new { sc.StudentId, sc.CourseId }
+            );
         }
         public DbSet<Student> Students { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<StudentAddress> StudentAddress { get; set; }
+        public DbSet<StudentCourse> StudentCourse { get; set; }
+        public DbSet<Grade> Grade { get; set; }
     }
 }
